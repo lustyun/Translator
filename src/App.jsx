@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-const APIKEY = import.meta.env.VITE_API_KEY
+const APIKEY = import.meta.env.VITE_API_KEY;
 let source = "en";
 let target = "ja";
 let inputValue = "Hello! What is your name?";
@@ -13,8 +13,7 @@ function App() {
             method: "POST",
             headers: {
                 "content-type": "application/x-www-form-urlencoded",
-                "X-RapidAPI-Key":
-                    APIKEY,
+                "X-RapidAPI-Key": APIKEY,
                 "X-RapidAPI-Host": "text-translator2.p.rapidapi.com",
             },
             body: new URLSearchParams({
@@ -40,7 +39,7 @@ function App() {
 
     return (
         <>
-            <h1>{}</h1>
+            <h1>{text}</h1>
         </>
     );
 }
