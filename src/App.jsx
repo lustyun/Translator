@@ -1,11 +1,12 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 let source = "en";
-let target = "ko";
+let target = "ja";
 let inputValue = "Hello! What is your name?";
 
 function App() {
+    const [text, setText] = useState("");
     async function callApi() {
         const url = "https://text-translator2.p.rapidapi.com/translate";
         const options = {
@@ -26,7 +27,7 @@ function App() {
         try {
             const response = await fetch(url, options);
             const result = await response.json();
-
+            setText(result);
             console.log(result.data.translatedText);
         } catch (error) {
             console.error(error);
@@ -37,7 +38,11 @@ function App() {
         callApi();
     }, []);
 
-    return <></>;
+    return (
+        <>
+            <h1>{}</h1>
+        </>
+    );
 }
 
 export default App;
