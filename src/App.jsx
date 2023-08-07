@@ -32,12 +32,27 @@ function App() {
             console.error(error);
         }
     }
+    async function getLanguageApi() {
+        const url = "https://text-translator2.p.rapidapi.com/getLanguages";
+        const options = {
+            method: "GET",
+            headers: {
+                "X-RapidAPI-Key": APIKEY,
+                "X-RapidAPI-Host": "text-translator2.p.rapidapi.com",
+            },
+        };
 
-
-    
+        try {
+            const response = await fetch(url, options);
+            const result = await response.text();
+            console.log(result);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     useEffect(() => {
-        callApi();
+        getLanguageApi();
     }, []);
 
     return (
