@@ -35,12 +35,15 @@ function App() {
 
     useEffect(() => {
         callApi();
-    }, []); 
+    }, []);
 
     return (
-        <>
+        <div>
+            <label for="text">Enter Text:</label>
+            <input type="text" id="text" placeholder="Enter your text here" />
+
             <h1>{text}</h1>
-        </>
+        </div>
     );
 }
 
