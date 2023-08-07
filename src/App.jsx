@@ -16,6 +16,16 @@ function App() {
                 text: [inputValue],
             }),
         };
+
+        try {
+          const response = await fetch(url, options);
+          const result = await response.json();
+        
+          console.log(result.data.translatedText);
+
+      } catch (error) {
+          console.error(error);
+      }
     }
 
     return <>
