@@ -33,6 +33,9 @@ function App() {
         }
     }
 
+
+    
+
     useEffect(() => {
         callApi();
     }, []);
@@ -41,7 +44,11 @@ function App() {
         <div>
             <label for="text">Enter Text:</label>
             <input type="text" id="text" placeholder="Enter your text here" />
-
+            <button onclick={callApi}>Translate</button>
+            <label>Source Language: </label>
+            <select id="source-language" />
+            <label>Target Language: </label>
+            <select id="target_language" />
             <h1>{text}</h1>
         </div>
     );
