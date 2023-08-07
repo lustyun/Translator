@@ -59,49 +59,46 @@ function App() {
     }, []);
 
     return (
-        <div>
-            <label>Enter Text:</label>
-            <input
-                type="text"
-                id="text"
-                placeholder="Enter your text here"
-                value={inputText}
-                onChange={(e) => {
-                    console.log("onChange event triggered", e.target.value);
-                    setInputText(e.target.value);
-                }}
-            />
-            <button onClick={callApi}>Translate</button>
-            <label>Source Language: </label>
-            <select
-                value={sourceLanguage}
-                onChange={(e) => {
-                    console.log("onChange event triggered", e.target.value);
-                    setSourceLanguage(e.target.value);
-                }}
-                id="source-language">
-                {languages.map((language, i) => (
-                    <option key={i} value={language.code}>
-                        {language.name}
-                    </option>
-                ))}
-            </select>
+        <div className="container">
+            <div className="language-selectors">
+                <label className="language-label">Source Language:</label>
+                <select
+                    value={sourceLanguage}
+                    onChange={(e) => setSourceLanguage(e.target.value)}
+                    className="language-select">
+                    {languages.map((language, i) => (
+                        <option key={i} value={language.code}>
+                            {language.name}
+                        </option>
+                    ))}
+                </select>
 
-            <label>Target Language: </label>
-            <select
-                value={targetLanguage}
-                onChange={(e) => {
-                    console.log("onChange event triggered", e.target.value);
-                    setTargetLanguage(e.target.value);
-                }}
-                id="target-language">
-                {languages.map((language, i) => (
-                    <option key={i} value={language.code}>
-                        {language.name}
-                    </option>
-                ))}
-            </select>
-            <h1>{text}</h1>
+                <label className="language-label">Target Language:</label>
+                <select
+                    value={targetLanguage}
+                    onChange={(e) => setTargetLanguage(e.target.value)}
+                    className="language-select">
+                    {languages.map((language, i) => (
+                        <option key={i} value={language.code}>
+                            {language.name}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            <div className="input-container">
+                <textarea
+                    type="text"
+                    id="text"
+                    className="input-text"
+                    placeholder="Enter your text here"
+                    value={inputText}
+                    onChange={(e) => setInputText(e.target.value)}
+                />
+            </div>
+                <button className="translate-button" onClick={callApi}>
+                    Translate
+                </button>
+            <h3 className="translated-text">{text}</h3>
         </div>
     );
 }
