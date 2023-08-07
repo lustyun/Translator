@@ -1,15 +1,13 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 const APIKEY = import.meta.env.VITE_API_KEY;
-let source = "en";
-let target = "ja";
-let inputValue = "Hello! What is your name?";
 
 function App() {
     const [text, setText] = useState("");
     const [targetLanguage, setTargetLanguage] = useState("ja");
     const [sourceLanguage, setSourceLanguage] = useState("en");
     const [languages, setLanguages] = useState([]);
+    const [inputText, setInputText] = useState("");
 
     async function callApi() {
         const url = "https://text-translator2.p.rapidapi.com/translate";
@@ -21,9 +19,9 @@ function App() {
                 "X-RapidAPI-Host": "text-translator2.p.rapidapi.com",
             },
             body: new URLSearchParams({
-                source_language: [source],
-                target_language: [target],
-                text: [inputValue],
+                source_language: [sourceLanguage],
+                target_language: [targetLanguage],
+                text: [inputText],
             }),
         };
 
@@ -63,7 +61,16 @@ function App() {
     return (
         <div>
             <label>Enter Text:</label>
-            <input type="text" id="text" placeholder="Enter your text here" />
+            <input
+                type="text"
+                id="text"
+                placeholder="Enter your text here"
+                value={inputText}
+                onChange={(e) => {
+                    console.log("onChange event triggered", e.target.value);
+                    setInputText(e.target.value);
+                }}
+            />
             <button onClick={callApi}>Translate</button>
             <label>Source Language: </label>
             <select
