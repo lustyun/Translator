@@ -1,6 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-
+const APIKEY = import.meta.env.VITE_API_KEY
 let source = "en";
 let target = "ja";
 let inputValue = "Hello! What is your name?";
@@ -14,7 +14,7 @@ function App() {
             headers: {
                 "content-type": "application/x-www-form-urlencoded",
                 "X-RapidAPI-Key":
-                    "96afb637f6msh22e9497d049080ep10a52ajsna3c7e7fe064e",
+                    APIKEY,
                 "X-RapidAPI-Host": "text-translator2.p.rapidapi.com",
             },
             body: new URLSearchParams({
