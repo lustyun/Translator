@@ -1,7 +1,14 @@
 import "./App.css";
+import { useEffect, useState } from "react";
+
+let source = "en";
+let target = "ja";
+let inputValue = "Hello! What is your name?";
 
 function App() {
+    const [text, setText] = useState("");
     async function callApi() {
+        const url = "https://text-translator2.p.rapidapi.com/translate";
         const options = {
             method: "POST",
             headers: {
@@ -18,19 +25,24 @@ function App() {
         };
 
         try {
-          const response = await fetch(url, options);
-          const result = await response.json();
-        
-          console.log(result.data.translatedText);
-
-      } catch (error) {
-          console.error(error);
-      }
+            const response = await fetch(url, options);
+            const result = await response.json();
+            setText(result);
+            console.log(result.data.translatedText);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
-    return <>
-    
-    </>;
+    useEffect(() => {
+        callApi();
+    }, []);
+
+    return (
+        <>
+            <h1>{}</h1>
+        </>
+    );
 }
 
 export default App;
