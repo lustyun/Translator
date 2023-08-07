@@ -7,7 +7,10 @@ let inputValue = "Hello! What is your name?";
 
 function App() {
     const [text, setText] = useState("");
+    const [targetLanguage, setTargetLanguage] = useState("ja");
+    const [sourceLanguage, setSourceLanguage] = useState("en");
     const [languages, setLanguages] = useState([]);
+
     async function callApi() {
         const url = "https://text-translator2.p.rapidapi.com/translate";
         const options = {
@@ -63,16 +66,32 @@ function App() {
             <input type="text" id="text" placeholder="Enter your text here" />
             <button onClick={callApi}>Translate</button>
             <label>Source Language: </label>
-            <select id="source-language">
-                {languages.map((language) => (
-                    <option value={language.code}>{language.name}</option>
+            <select
+                value={sourceLanguage}
+                onChange={(e) => {
+                    console.log("onChange event triggered", e.target.value);
+                    setSourceLanguage(e.target.value);
+                }}
+                id="source-language">
+                {languages.map((language, i) => (
+                    <option key={i} value={language.code}>
+                        {language.name}
+                    </option>
                 ))}
             </select>
 
             <label>Target Language: </label>
-            <select id="target-language">
-                {languages.map((language) => (
-                    <option value={language.code}>{language.name}</option>
+            <select
+                value={targetLanguage}
+                onChange={(e) => {
+                    console.log("onChange event triggered", e.target.value);
+                    setTargetLanguage(e.target.value);
+                }}
+                id="target-language">
+                {languages.map((language, i) => (
+                    <option key={i} value={language.code}>
+                        {language.name}
+                    </option>
                 ))}
             </select>
             <h1>{text}</h1>
