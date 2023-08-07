@@ -26,7 +26,7 @@ function App() {
         try {
             const response = await fetch(url, options);
             const result = await response.json();
-            setText(result);
+            setText(result.data.translatedText);
             console.log(result.data.translatedText);
         } catch (error) {
             console.error(error);
@@ -35,7 +35,7 @@ function App() {
 
     useEffect(() => {
         callApi();
-    }, []);
+    }, []); 
 
     return (
         <>
