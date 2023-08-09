@@ -8,7 +8,7 @@ function App() {
     const [sourceLanguage, setSourceLanguage] = useState("en");
     const [languages, setLanguages] = useState([]);
     const [inputText, setInputText] = useState("");
-    const [detectedLang, setDetectedLang] = useState("");
+    const [detectedLang, setDetectedLang] = useState(null);
 
     async function callApi() {
         const url = "https://text-translator2.p.rapidapi.com/translate";
@@ -55,9 +55,9 @@ function App() {
 
         try {
             const response = await fetch(url, options);
-            const result = await response.text();
+            const result = await response.json();
             console.log(result);
-            setDetectedLang(result)
+            setDetectedLang(result.data.detections[0][0].language)
         } catch (error) {
             console.error(error);
         }
@@ -134,7 +134,7 @@ function App() {
             <button className="translate-button" onClick={callApi}>
                 Translate
             </button>
-            <h3>Detected source language: {detectedLang}</h3>
+            {detectedLang && <h3>Detected source language: {detectedLang}</h3>}
             <h3 className="translated-text">{text}</h3>
             {text && (
                 <button
