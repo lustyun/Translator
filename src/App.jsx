@@ -54,6 +54,8 @@ function App() {
         }
     }
 
+    const copyToClipboard = () => {};
+
     useEffect(() => {
         getLanguageApi();
     }, []);
@@ -92,14 +94,15 @@ function App() {
                     id="text"
                     className="input-text"
                     placeholder="Enter your text here"
-                    value={inputText} 
+                    value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
                 />
             </div>
-                <button className="translate-button" onClick={callApi}>
-                    Translate
-                </button>
-            <h3 className="translated-text">{text}</h3>
+            <button className="translate-button" onClick={callApi}>
+                Translate
+            </button>
+            <h3 className="translated-text copy">{text}</h3>
+            <button className="translate-button" onclick={navigator.clipboard.writeText(text)}>Copy</button>
         </div>
     );
 }
