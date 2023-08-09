@@ -8,6 +8,7 @@ function App() {
     const [sourceLanguage, setSourceLanguage] = useState("en");
     const [languages, setLanguages] = useState([]);
     const [inputText, setInputText] = useState("");
+    const [detectedLang, setDetectedLang] = useState("");
 
     async function callApi() {
         const url = "https://text-translator2.p.rapidapi.com/translate";
@@ -29,11 +30,39 @@ function App() {
             const response = await fetch(url, options);
             const result = await response.json();
             setText(result.data.translatedText);
+            detectLanguageApi();
             console.log(result.data.translatedText);
         } catch (error) {
             console.error(error);
         }
     }
+
+    async function detectLanguageApi() {
+        const url =
+            "https://google-translate1.p.rapidapi.com/language/translate/v2/detect";
+        const options = {
+            method: "POST",
+            headers: {
+                "content-type": "application/x-www-form-urlencoded",
+                "Accept-Encoding": "application/gzip",
+                "X-RapidAPI-Key": APIKEY,
+                "X-RapidAPI-Host": "google-translate1.p.rapidapi.com",
+            },
+            body: new URLSearchParams({
+                q: inputText,
+            }),
+        };
+
+        try {
+            const response = await fetch(url, options);
+            const result = await response.text();
+            console.log(result);
+            setDetectedLang(result)
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     async function getLanguageApi() {
         const url = "https://text-translator2.p.rapidapi.com/getLanguages";
         const options = {
@@ -47,14 +76,12 @@ function App() {
         try {
             const response = await fetch(url, options);
             const result = await response.json();
-            console.log(result);
+            console.log(result.data);
             setLanguages(result.data.languages);
         } catch (error) {
             console.error(error);
         }
     }
-
-    const copyToClipboard = () => {};
 
     useEffect(() => {
         getLanguageApi();
@@ -64,7 +91,11 @@ function App() {
         <div className="container">
             <h1 className="title">Translator</h1>
 
-            <img className="banner" src="https://www.ccjk.com/wp-content/uploads/2012/04/The-Choice-of-Word-in-Translation.jpg" alt="" />
+            <img
+                className="banner"
+                src="https://www.ccjk.com/wp-content/uploads/2012/04/The-Choice-of-Word-in-Translation.jpg"
+                alt=""
+            />
             <div className="language-selectors">
                 <label className="language-label">Source Language:</label>
                 <select
@@ -103,8 +134,15 @@ function App() {
             <button className="translate-button" onClick={callApi}>
                 Translate
             </button>
+            <h3>Detected source language: {detectedLang}</h3>
             <h3 className="translated-text">{text}</h3>
-            {text && <button className="translate-button copy" onclick={navigator.clipboard.writeText(text)}>Copy</button>}
+            {text && (
+                <button
+                    className="translate-button copy"
+                    onClick={() => navigator.clipboard.writeText(text)}>
+                    Copy
+                </button>
+            )}
         </div>
     );
 }
