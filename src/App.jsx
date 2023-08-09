@@ -63,6 +63,8 @@ function App() {
     return (
         <div className="container">
             <h1 className="title">Translator</h1>
+
+            <img className="banner" src="https://www.ccjk.com/wp-content/uploads/2012/04/The-Choice-of-Word-in-Translation.jpg" alt="" />
             <div className="language-selectors">
                 <label className="language-label">Source Language:</label>
                 <select
