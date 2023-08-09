@@ -144,3 +144,8 @@ select {
         display: none;
     }
 }
+
+textarea {
+    font-family: "Roboto", sans-serif;
+    height: 100px;
+}
