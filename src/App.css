@@ -111,6 +111,11 @@ input:focus {
     cursor: pointer;
 }
 
+.copy {
+    background-color: #e0bf00;
+    color: black;
+}
+
 .language-selectors {
     display: flex;
     align-items: center;

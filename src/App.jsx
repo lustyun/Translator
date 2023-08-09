@@ -101,8 +101,8 @@ function App() {
             <button className="translate-button" onClick={callApi}>
                 Translate
             </button>
-            <h3 className="translated-text copy">{text}</h3>
-            <button className="translate-button" onclick={navigator.clipboard.writeText(text)}>Copy</button>
+            <h3 className="translated-text">{text}</h3>
+            <button className="translate-button copy" onclick={navigator.clipboard.writeText(text)}>Copy</button>
         </div>
     );
 }
