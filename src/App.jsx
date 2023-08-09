@@ -104,7 +104,7 @@ function App() {
                 Translate
             </button>
             <h3 className="translated-text">{text}</h3>
-            <button className="translate-button copy" onclick={navigator.clipboard.writeText(text)}>Copy</button>
+            {text && <button className="translate-button copy" onclick={navigator.clipboard.writeText(text)}>Copy</button>}
         </div>
     );
 }
