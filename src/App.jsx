@@ -83,6 +83,11 @@ function App() {
         }
     }
 
+    function getLanguageNameByCode(code) {
+        const language = languages.find(lang => lang.code === code);
+        return language ? language.name : 'Language not found';
+    }
+
     useEffect(() => {
         getLanguageApi();
     }, []);
