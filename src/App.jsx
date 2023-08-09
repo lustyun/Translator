@@ -91,7 +91,7 @@ function App() {
                     id="text"
                     className="input-text"
                     placeholder="Enter your text here"
-                    value={inputText}
+                    value={inputText} 
                     onChange={(e) => setInputText(e.target.value)}
                 />
             </div>
