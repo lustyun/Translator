@@ -60,6 +60,7 @@ function App() {
 
     return (
         <div className="container">
+            <h1 className="title">Translator</h1>
             <div className="language-selectors">
                 <label className="language-label">Source Language:</label>
                 <select

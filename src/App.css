@@ -4,7 +4,7 @@
     line-height: 1.5;
     font-weight: 400;
     color: rgb(60, 64, 67);
-    background-color: #ffffff;
+    background-color: #383838;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -12,6 +12,9 @@
     -webkit-text-size-adjust: 100%;
 }
 
+.title{
+    text-align: center;
+}
 a {
     font-weight: 500;
     color: #646cff;
