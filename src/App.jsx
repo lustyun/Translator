@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import Speak from "./components/Speak"
 const APIKEY = import.meta.env.VITE_API_KEY;
 
 function App() {
@@ -148,6 +149,7 @@ function App() {
                     Copy
                 </button>
             )}
+            <Speak text = {text} targetLang = {targetLanguage}></Speak>
         </div>
     );
 }
