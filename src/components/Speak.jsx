@@ -31,14 +31,16 @@ function Speak({ text, targetLang }) {
     };
 
     return (
-        <div className="App">
-            <button
-                className="translate-button speak"
-                onClick={handleSpeak}
-                disabled={speaking}>
-                {speaking ? "Speaking..." : "Speak"}
-            </button>
-        </div>
+        text && (
+            <div className="App">
+                <button
+                    className="translate-button speak"
+                    onClick={handleSpeak}
+                    disabled={speaking}>
+                    {speaking ? "Speaking..." : "Speak"}
+                </button>
+            </div>
+        )
     );
 }
 
