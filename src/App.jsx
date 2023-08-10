@@ -139,7 +139,7 @@ function App() {
             <button className="translate-button" onClick={callApi}>
                 Translate
             </button>
-            {detectedLang && <h3>Detected source language: {detectedLang}</h3>}
+            {detectedLang && <h3>Detected source language: {getLanguageNameByCode(detectedLang)}</h3>}
             <h3 className="translated-text">{text}</h3>
             {text && (
                 <button
